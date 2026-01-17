@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>2048</title>
+  <link rel="stylesheet" href="./css/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="title">
+        <h1>2048</h1>
+        <p class="subtitle">Собери 2048 и поставь рекорд</p>
+      </div>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat__label">Score</div>
+          <div class="stat__value" id="score">0</div>
+        </div>
+        <div class="stat">
+          <div class="stat__label">Best</div>
+          <div class="stat__value" id="best">0</div>
+        </div>
+      </div>
+
+      <div class="actions">
+        <button class="btn" id="newGameBtn" type="button">New game</button>
+        <button class="btn" id="undoBtn" type="button" disabled>Undo</button>
+        <button class="btn btn--ghost" id="leadersBtn" type="button">Leaders</button>
+      </div>
+    </header>
+
+    <main class="main">
+      <section class="board-wrap" aria-label="Игровое поле">
+        <div class="board" id="board">
+          <div class="board__bg" id="bgGrid"></div>
+          <div class="board__tiles" id="tilesLayer"></div>
+
+          <!-- GAME OVER OVERLAY -->
+          <div class="overlay" id="overlay" hidden>
+            <div class="overlay__card">
+              <h2 class="overlay__title" id="overlayTitle">Игра окончена</h2>
+              <p class="overlay__text" id="overlayText">Введите имя и сохраните рекорд</p>
+
+              <div class="overlay__form" id="submitForm">
+                <input class="input" id="playerName" type="text" maxlength="20" placeholder="Ваше имя" />
+                <button class="btn btn--primary" id="saveScoreBtn" type="button">Сохранить результат</button>
+              </div>
+
+              <div class="overlay__actions">
+                <button class="btn" id="restartBtn" type="button">Начать заново</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile controls -->
+        <div class="mobile-controls" id="mobileControls" hidden>
+          <button class="mbtn" data-dir="up" aria-label="Вверх">↑</button>
+          <div class="mobile-controls__row">
+            <button class="mbtn" data-dir="left" aria-label="Влево">←</button>
+            <button class="mbtn" data-dir="down" aria-label="Вниз">↓</button>
+            <button class="mbtn" data-dir="right" aria-label="Вправо">→</button>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <!-- LEADERBOARD MODAL -->
+  <div class="modal" id="leadersModal" hidden>
+    <div class="modal__backdrop" id="modalBackdrop"></div>
+    <div class="modal__card" role="dialog" aria-modal="true" aria-label="Таблица лидеров">
+      <div class="modal__head">
+        <h2>Таблица лидеров (Top-10)</h2>
+        <button class="btn btn--ghost" id="closeModalBtn" type="button">✕</button>
+      </div>
+
+      <div class="table-wrap">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Имя</th>
+              <th>Очки</th>
+              <th>Дата</th>
+            </tr>
+          </thead>
+          <tbody id="leadersTbody"></tbody>
+        </table>
+      </div>
+
+      <div class="modal__foot">
+        <button class="btn" id="clearLeadersBtn" type="button">Очистить</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>
